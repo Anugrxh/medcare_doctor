@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:medcare_doctor/ui/screen/home_screen.dart';
-import 'package:medcare_doctor/ui/screen/login_screen.dart';
-import 'package:medcare_doctor/ui/screen/patient_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home:const  HomeScreen(),
     );
   }
 }

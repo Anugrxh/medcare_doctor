@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medcare_doctor/ui/screen/home_screen.dart';
+
+import '../widgets/custom_button.dart';
 
 class PatientScreen extends StatefulWidget {
   const PatientScreen({super.key});
@@ -12,12 +13,6 @@ class _PatientScreenState extends State<PatientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "Patient History",
-        ),
-      ),
       body: Center(
         child: SizedBox(
           width: 1000,
@@ -39,10 +34,10 @@ class _PatientScreenState extends State<PatientScreen> {
               ),
               Expanded(
                 child: ListView.separated(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   itemCount: 10,
-                  itemBuilder: (context, index) => PatientCard(),
-                  separatorBuilder: (context, index) => SizedBox(
+                  itemBuilder: (context, index) => const PatientCard(),
+                  separatorBuilder: (context, index) => const SizedBox(
                     height: 10,
                   ),
                 ),
@@ -164,7 +159,38 @@ class PatientCard extends StatelessWidget {
                         label: "History",
                         buttonColor: Colors.blue,
                         labelColor: Colors.white,
-                        onTap: () {},
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: ((context) => Dialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 15,
+                                    ),
+                                    child: SizedBox(
+                                      width: 600,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          CustomButton(
+                                            label: "Done",
+                                            labelColor: Colors.white,
+                                            buttonColor: Colors.blue,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                          );
+                        },
                       ),
                     ],
                   ),

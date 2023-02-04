@@ -1,6 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:medcare_doctor/ui/screen/home_screen.dart';
+
+import '../widgets/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -8,79 +9,67 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 233, 235, 233),
+      backgroundColor: const Color.fromARGB(255, 233, 235, 233),
       body: Row(
         children: [
           Expanded(
-            child: Image.asset("assets/image/doctor.png",)
-          ),
+              child: Image.asset(
+            "assets/image/doctor.png",
+          )),
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 150,
-                
                 ),
                 Text(
-                  "Login"
-                  ,
+                  "Login",
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color:Colors.black,
-
-                  ),
-
+                        color: Colors.black,
+                      ),
                 ),
-
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 SizedBox(
                   width: 400,
                   child: TextField(
-                decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30)
+                    decoration: InputDecoration(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      hintText: 'Username',
+                    ),
+                  ),
                 ),
-                hintText: 'Username',
-                ),
-                ),
-                ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 SizedBox(
                   width: 400,
                   child: TextField(
-                decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30)
+                    decoration: InputDecoration(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      hintText: 'Password',
+                    ),
+                  ),
                 ),
-                hintText: 'Password',
-                ),
-                ),
-                ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                ElevatedButton(
-            onPressed: () {
-              // Validate returns true if the form is valid, or false otherwise.
-              var _formKey;
-              if (_formKey.currentState!.validate()) {
-                // If the form is valid, display a snackbar. In the real world,
-                // you'd often call a server or save the information in a database.
-                ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Processing Data')),
-                );
-              }
-            },
-            child: const Text('Submit'),
-          ),
-                
+                CustomButton(
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                  },
+                  label: 'Login',
+                  
+                ),
               ],
             ),
           ),
