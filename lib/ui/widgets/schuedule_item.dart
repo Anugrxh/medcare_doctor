@@ -74,6 +74,13 @@ class SchueduleItem extends StatelessWidget {
                         width: 5,
                       ),
                       CustomButton(
+                        onTap: () {},
+                        label: "skip",
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      CustomButton(
                         label: "History",
                         onTap: () {
                           showDialog(
