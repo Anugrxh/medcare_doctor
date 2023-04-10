@@ -76,6 +76,20 @@ class DoctorAppointmentsBloc
           }).eq('id', event.appointmentId);
 
           add(GetAllDoctorAppointmentsEvent());
+        } else if (event is SetConditionDoctorAppointmentEvent) {
+          //add
+          await queryTable.update({
+            'condition': event.condition,
+          }).eq('id', event.appointmentId);
+
+          add(GetAllDoctorAppointmentsEvent());
+        } else if (event is SetPrescriptionDoctorAppointmentEvent) {
+          //add
+          await queryTable.update({
+            'prescription': event.prescription,
+          }).eq('id', event.appointmentId);
+
+          add(GetAllDoctorAppointmentsEvent());
         } else if (event is DeleteDoctorAppointmentEvent) {
           //delete
           await queryTable.delete().eq('id', event.appointmentId);

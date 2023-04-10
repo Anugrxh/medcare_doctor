@@ -22,6 +22,12 @@ class MyApp extends StatelessWidget {
       title: 'Medcare Doctor',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        inputDecorationTheme: ThemeData.light().inputDecorationTheme.copyWith(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
+              ),
+            ),
       ),
       home: const Login(),
     );

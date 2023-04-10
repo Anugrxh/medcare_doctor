@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medcare_doctor/ui/screens/patient_details_screen.dart';
+import 'package:medcare_doctor/ui/widgets/custom_card.dart';
 
 import '../../blocs/doctor_appointments/doctor_appointments_bloc.dart';
 import '../../util/get_age.dart';
@@ -244,8 +245,43 @@ class _IssuedTokensScreenState extends State<IssuedTokensScreen> {
                                 ),
                                 CustomActionButton(
                                   iconData: Icons.medical_information_outlined,
-                                  onPressed: () {
-                                    //
+                                  onPressed: () async {
+                                    TextEditingController _controller =
+                                        TextEditingController();
+                                    _controller.text =
+                                        currentToken!['condition'];
+
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => CustomAlertDialog(
+                                        title: 'Condition',
+                                        message:
+                                            'Add or edit the conditions below',
+                                        width: 600,
+                                        content: CustomCard(
+                                          child: TextField(
+                                            controller: _controller,
+                                            minLines: 4,
+                                            maxLines: 7,
+                                            decoration: const InputDecoration(
+                                              hintText: 'Condition',
+                                            ),
+                                          ),
+                                        ),
+                                        primaryButtonLabel: 'Save',
+                                        primaryOnPressed: () {
+                                          widget.appointmentsBloc.add(
+                                            SetConditionDoctorAppointmentEvent(
+                                              appointmentId:
+                                                  currentToken!['id'],
+                                              condition:
+                                                  _controller.text.trim(),
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    );
                                   },
                                   label: 'Add Condition',
                                 ),
@@ -255,7 +291,42 @@ class _IssuedTokensScreenState extends State<IssuedTokensScreen> {
                                 CustomActionButton(
                                   iconData: Icons.document_scanner_outlined,
                                   onPressed: () {
-                                    //
+                                    TextEditingController _controller =
+                                        TextEditingController();
+                                    _controller.text =
+                                        currentToken!['prescription'];
+
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => CustomAlertDialog(
+                                        title: 'Prescription',
+                                        message:
+                                            'Add or edit the prescriptions below',
+                                        width: 600,
+                                        content: CustomCard(
+                                          child: TextField(
+                                            controller: _controller,
+                                            minLines: 4,
+                                            maxLines: 7,
+                                            decoration: const InputDecoration(
+                                              hintText: 'Prescription',
+                                            ),
+                                          ),
+                                        ),
+                                        primaryButtonLabel: 'Save',
+                                        primaryOnPressed: () {
+                                          widget.appointmentsBloc.add(
+                                            SetPrescriptionDoctorAppointmentEvent(
+                                              appointmentId:
+                                                  currentToken!['id'],
+                                              prescription:
+                                                  _controller.text.trim(),
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    );
                                   },
                                   label: 'Add Prescription',
                                 )
