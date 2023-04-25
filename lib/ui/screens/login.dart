@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medcare_doctor/util/value_validators.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../blocs/auth/sign_in/sign_in_bloc.dart';
@@ -140,14 +141,7 @@ class _LoginState extends State<Login> {
                                       child: TextFormField(
                                         controller: _emailController,
                                         obscureText: false,
-                                        validator: (value) {
-                                          if (value != null &&
-                                              value.isNotEmpty) {
-                                            return null;
-                                          } else {
-                                            return "Please enter an email";
-                                          }
-                                        },
+                                        validator: emailValidator,
                                         decoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.symmetric(
